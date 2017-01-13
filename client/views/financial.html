@@ -1,0 +1,117 @@
+<div class="container">
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label for="fldOrgSearch" class="col-xs-12 col-sm-2 col-md-1 control-label">
+                Φορέας
+            </label>
+            <div class="btn-group col-xs-12 col-sm-10 col-md-4">
+                <input type="text" class="form-control" id="fldOrgSearch"
+                       ng-model="selectedOrganization" placeholder="Προαιρετικό"
+                       ng-disabled="status.loading" typeahead-loading="loadingOrganizations"
+                       typeahead-noresults="noOrganizationsFound" typeahead-min-length="3"
+                       uib-typeahead="label for label in getOrganizations($viewValue)">
+                <span id="organizationSearchClear"
+                      class="textFieldClear glyphicon glyphicon-remove-circle"
+                      ng-click="clearOrganization()"></span>
+            </div>
+            <label for="fldSponsorSearch" class="col-xs-12 col-sm-2 col-md-1 control-label">
+                Ανάδοχος
+            </label>
+            <div class="btn-group col-xs-12 col-sm-10 col-md-4">
+                <input type="text" class="form-control" id="fldSponsorSearch"
+                       ng-model="selectedSponsor" placeholder="Προαιρετικό"
+                       ng-disabled="status.loading" typeahead-loading="loadingSponsors"
+                       typeahead-noresults="noSponsorsFound" typeahead-min-length="3"
+                       uib-typeahead="name for name in getSponsors($viewValue)">
+                <span id="sponsorSearchClear"
+                      class="textFieldClear glyphicon glyphicon-remove-circle"
+                      ng-click="clearSponsor()"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="fldDateFrom" class="col-xs-12 col-sm-2 col-md-1 control-label">Από</label>
+            <div class="col-xs-12 col-sm-10 col-md-4">
+                <p class="input-group">
+                    <input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy"
+                           ng-model="dateFrom" is-open="status.dateFromIsOpen"
+                           datepicker-options="dateOptions" ng-required="true" current-text="Σήμερα"
+                           clear-text="Καθαρισμός" close-text="Κλείσιμο"
+                           ng-disabled="status.loading" placeholder="Επιλέξτε ημερομηνία"
+                           id="fldDateFrom"/>
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="openDateFrom()"
+                                ng-disabled="status.loading">
+                            <i class="glyphicon glyphicon-calendar"></i>
+                        </button>
+                    </span>
+                </p>
+            </div>
+            <label for="fldDateTo" class="col-xs-12 col-sm-2 col-md-1 control-label">Έως</label>
+            <div class="col-xs-12 col-sm-10 col-md-4">
+                <p class="input-group">
+                    <input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy"
+                           ng-model="dateTo" is-open="status.dateToIsOpen"
+                           datepicker-options="dateOptions" ng-required="true" current-text="Σήμερα"
+                           clear-text="Καθαρισμός" close-text="Κλείσιμο"
+                           ng-disabled="status.loading" placeholder="Επιλέξτε ημερομηνία"
+                           id="fldDateTo"/>
+                    <span class="input-group-btn">
+                        <button type="submit" class="btn btn-default" ng-click="openDateTo()"
+                                ng-disabled="status.loading">
+                            <i class="glyphicon glyphicon-calendar"></i>
+                        </button>
+                    </span>
+                </p>
+            </div>
+            <div class="col-xs-12 col-md-2">
+                <div class="btn-group" uib-dropdown>
+                    <button id="split-button" type="button" class="btn btn-primary"
+                            ng-disabled="status.loading" ng-click="load()">
+                        Εμφάνιση <i class="glyphicon glyphicon-refresh" ng-show="status.loading"></i>
+                    </button>
+                    <button type="button" class="btn btn-primary" uib-dropdown-toggle
+                            ng-disabled="status.loading">
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="uib-dropdown-menu" role="menu">
+                        <li role="menuitem">
+                            <a href="" ng-click="loadLastWeek()">Τελευταία εβδομάδα</a>
+                        </li>
+                        <li role="menuitem">
+                            <a href="" ng-click="loadCurrentWeek()">Τρέχουσα εβδομάδα</a>
+                        </li>
+                        <li role="menuitem">
+                            <a href="" ng-click="loadPreviousWeek()">Προηγούμενη εβδομάδα</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li role="menuitem">
+                            <a href="" ng-click="loadLastMonth()">Τελευταίος μήνας</a>
+                        </li>
+                        <li role="menuitem">
+                            <a href="" ng-click="loadCurrentMonth()">Τρέχων μήνας</a>
+                        </li>
+                        <li role="menuitem">
+                            <a href="" ng-click="loadPreviousMonth()">Προηγούμενος μήνας</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li role="menuitem">
+                            <a href="" ng-click="loadLastYear()">Τελευταίο έτος</a>
+                        </li>
+                        <li role="menuitem">
+                            <a href="" ng-click="loadCurrentYear()">Τρέχον έτος</a>
+                        </li>
+                        <li role="menuitem">
+                            <a href="" ng-click="loadPreviousYear()">Προηγούμενο έτος</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="row">
+        <div class="col-xs-12 chart_div" id="chart_div"></div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 chart_div" id="hidden_div"></div>
+    </div>
+</div>

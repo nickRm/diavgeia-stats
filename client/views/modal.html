@@ -1,0 +1,23 @@
+<div class="modal-header">
+    <h3>{{ modal.title }}</h3>
+</div>
+<div class="modal-body">
+    <table class="table table-hover table-responsive">
+        <thead>
+            <tr>
+                <th>ΑΔΑ</th>
+                <th>Θέμα</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="decision in modal.data track by $index"
+                    ng-click="openDecisionInNewTab(decision.ada)" style="cursor: pointer">
+                <td style="white-space: nowrap">{{decision.ada}}</td>
+                <td>{{decision.subject}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-default" type="button" ng-click="close()">Κλείσιμο</button>
+</div>
